@@ -1,175 +1,72 @@
 <template>
-  <section class="section">
-    <h2 class="fade-in">About Me</h2>
-    <div class="about-content">
-      <div class="about-text">
-        <p class="intro slide-in">Full Stack Software Engineer passionate about developing enterprise-level solutions with expertise in banking systems, GIS applications, and web development.</p>
-        
-        <p class="fade-in-up">With over 2 years of experience in the software industry, I specialize in building robust, scalable applications that solve complex business challenges. My expertise spans across banking solutions, geospatial applications, and full-stack development.</p>
-        
-        <p class="fade-in-up">My approach combines technical excellence with business acumen, focusing on delivering solutions that not only meet technical requirements but also drive business value. I'm particularly passionate about:</p>
-        
-        <ul class="passion-points">
-          <li class="fade-in-left">Architecting scalable systems that handle high-volume transactions</li>
-          <li class="fade-in-left">Implementing secure, efficient financial technology solutions</li>
-          <li class="fade-in-left">Building intuitive user interfaces that enhance user experience</li>
-          <li class="fade-in-left">Optimizing application performance and system reliability</li>
-        </ul>
+  <div class="relative">
+    <!-- Avatar floating in the corner -->
+    <div class="absolute -top-12 right-4 md:right-12 w-24 h-24 animate-bounce-slow">
+      <div class="w-full h-full rounded-full border-4 border-primary shadow-lg shadow-primary/20 bg-dark-light flex items-center justify-center text-primary">
+        <i class="fas fa-user text-3xl"></i>
       </div>
     </div>
-  </section>
+
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-fade-in">
+        About Me
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <!-- Profile Image/Placeholder -->
+        <div class="relative group animate-fade-in-left">
+          <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+          <div class="relative bg-dark-light rounded-lg shadow-xl aspect-[4/5] flex items-center justify-center">
+            <i class="fas fa-user-circle text-8xl text-primary/50"></i>
+          </div>
+        </div>
+
+        <!-- About Text -->
+        <div class="space-y-6">
+          <p class="text-xl text-text-primary leading-relaxed animate-fade-in-right">
+            Full Stack Software Engineer passionate about developing enterprise-level solutions with expertise in banking systems, GIS applications, and web development.
+          </p>
+          
+          <p class="text-text-secondary leading-relaxed animate-fade-in-right" style="animation-delay: 200ms;">
+            With over 2 years of experience in the software industry, I specialize in building robust, scalable applications that solve complex business challenges. My expertise spans across banking solutions, geospatial applications, and full-stack development.
+          </p>
+          
+          <p class="text-text-secondary leading-relaxed animate-fade-in-right" style="animation-delay: 400ms;">
+            My approach combines technical excellence with business acumen, focusing on delivering solutions that not only meet technical requirements but also drive business value.
+          </p>
+
+          <!-- Passion Points -->
+          <div class="mt-8 space-y-4">
+            <h3 class="text-lg font-semibold text-primary animate-fade-in-right" style="animation-delay: 600ms;">
+              I'm particularly passionate about:
+            </h3>
+            <ul class="space-y-3">
+              <li v-for="(point, index) in passionPoints" 
+                  :key="point"
+                  :style="`animation-delay: ${(index + 4) * 200}ms`"
+                  class="flex items-center space-x-3 animate-fade-in-left group">
+                <span class="text-primary group-hover:translate-x-1 transition-transform duration-300">→</span>
+                <span class="text-text-secondary group-hover:text-text-primary transition-colors duration-300">
+                  {{ point }}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
+<script setup>
+const passionPoints = [
+  'Architecting scalable systems that handle high-volume transactions',
+  'Implementing secure, efficient financial technology solutions',
+  'Building intuitive user interfaces that enhance user experience',
+  'Optimizing application performance and system reliability'
+]
+</script>
+
 <style scoped>
-.about-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.about-text {
-  color: #94a3b8;
-  line-height: 1.8;
-}
-
-.intro {
-  font-size: 1.4rem;
-  color: #e2e8f0;
-  margin-bottom: 2rem;
-  font-weight: 500;
-}
-
-p {
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-}
-
-.passion-points {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0;
-}
-
-.passion-points li {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.passion-points li:before {
-  content: "→";
-  color: #60a5fa;
-  position: absolute;
-  left: 0;
-}
-
-/* Animations */
-.fade-in {
-  animation: fadeIn 0.8s ease-in forwards;
-}
-
-.slide-in {
-  animation: slideIn 0.8s ease-out forwards;
-}
-
-.fade-in-up {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out forwards;
-  animation-delay: 0.3s;
-}
-
-.fade-in-left {
-  opacity: 0;
-  animation: fadeInLeft 0.8s ease-out forwards;
-}
-
-.passion-points li:nth-child(1) { animation-delay: 0.4s; }
-.passion-points li:nth-child(2) { animation-delay: 0.6s; }
-.passion-points li:nth-child(3) { animation-delay: 0.8s; }
-.passion-points li:nth-child(4) { animation-delay: 1s; }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Hover animations */
-.passion-points li {
-  transition: transform 0.3s ease;
-}
-
-.passion-points li:hover {
-  transform: translateX(10px);
-}
-
-.passion-points li:hover:before {
-  animation: arrowBounce 0.8s infinite;
-}
-
-@keyframes arrowBounce {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-}
-
-/* Reduce animations on preference */
-@media (prefers-reduced-motion: reduce) {
-  .fade-in,
-  .slide-in,
-  .fade-in-up,
-  .fade-in-left {
-    animation: none;
-    opacity: 1;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-content {
-    padding: 1rem;
-  }
-  
-  .intro {
-    font-size: 1.2rem;
-  }
-}
+/* Optional: Add any custom styles here */
 </style> 
